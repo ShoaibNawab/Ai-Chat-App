@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart AI Chat</title>
+</head>
+<body>
+
+<h2>Smart AI Chat Bot</h2>
+
+<input id="msg" placeholder="Type message">
+<button onclick="send()">Send</button>
+
+<p id="chat"></p>
+
+<script>
+async function send(){
+  let msg = document.getElementById("msg").value;
+
+  let res = await fetch("https://YOUR-BACKEND-URL/chat", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({message: msg})
+  });
+
+  let data = await res.json();
+
+  document.getElementById("chat").innerText = data.reply;
+}
+</script>
+
+</body>
+</html>
